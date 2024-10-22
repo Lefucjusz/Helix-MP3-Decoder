@@ -26,6 +26,7 @@ static int helix_mp3_skip_id3v2_tag(helix_mp3_t *mp3)
 
     /* Check magic */
     if (strncmp((const char *)frame_buffer, id3v2_frame_magic_string, id3v2_frame_magic_string_length) != 0) {
+        mp3->io->seek(mp3->io->user_data, id3v2_frame_offset);
         return 0;
     }
 
